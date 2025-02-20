@@ -100,3 +100,20 @@ body {
   align-items: center;
   min-height: 100vh;
 }
+
+/* tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+/* desktop */
+@media (min-width: 1440px) {
+  body {
+    /* співпадає з tablet. потім можна прибрати */
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
