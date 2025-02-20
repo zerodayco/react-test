@@ -1,6 +1,9 @@
-body {
-  font-family: sans-serif;
-  line-height: 1.5;
+@import "modern-normalize/modern-normalize.css";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
 h1,
@@ -13,13 +16,87 @@ p {
   margin: 0;
 }
 
-ul,
-ol {
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 img {
   display: block;
   max-width: 100%;
+  height: auto;
+}
+
+:root {
+  --main: #323f47;
+  --main-text: #2f2f2f;
+  --accent: #9be1a0;
+  --background: #f0eff4;
+  --main-white: #fff;
+}
+
+@font-face {
+  font-family: 'Gilroy-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Gilroy-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gilroy-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Gilroy-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Poppins-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Poppins-Bold.woff') format('woff');
+}
+
+:root {
+  --font-family: 'Poppins Bold', sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
