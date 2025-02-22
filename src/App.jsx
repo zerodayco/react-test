@@ -1,11 +1,17 @@
-import "./App.css";
-import reactLogo from "./assets/react.svg";
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import SharedLayout from './components/SharedLayout/SharedLayout';
+import { lazy } from 'react';
+
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
-      <img src={reactLogo} className="logo react" alt="React logo" />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}></Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 }
