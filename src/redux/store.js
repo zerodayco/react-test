@@ -1,11 +1,36 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+import { authReducer } from './auth/slice';
+import storage from 'redux-persist/lib/storage';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-// Поки що використовуємо редюсер який
-// тільки повертає отриманий стан Redux
-const rootReducer = (state, action) => {
-  return state;
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+  whitelist: ['token'],
 };
 
+const persistedReducer = persistReducer(persistConfig, authReducer);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    auth: persistedReducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);
