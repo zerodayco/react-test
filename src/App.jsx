@@ -4,11 +4,14 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 import { lazy, useEffect } from 'react';
 import HomePage from './pages/HomePage/HomePage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
+import SignInPage from './pages/SignInPage/SignInPage';
 import RestrictedRoute from './routes/RestrictedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './components/Loader/Loader';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
+import PrivateRoute from './routes/PrivateRoute';
+import TrackerPage from './pages/TrackerPage/TrackerPage';
 
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
@@ -31,6 +34,18 @@ function App() {
             element={<RestrictedRoute component={SignUpPage} />}
           />
         </Route>
+        <Route
+          path="signin"
+          element={<RestrictedRoute component={SignInPage} />}
+        />
+        <Route
+          path="/tracker"
+          element={
+            <PrivateRoute>
+              <TrackerPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

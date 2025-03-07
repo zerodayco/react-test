@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Container from '../../components/Container/Container';
+import { Container } from '../../components/Container/Container.jsx';
 
 //import css from './NotFoundPage.module.css';
 

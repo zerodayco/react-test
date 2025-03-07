@@ -2,8 +2,16 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/operations';
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = v => {
+    dispatch(signUp({ email: v.email, password: v.password }));
+  };
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Invalid email address')
@@ -20,7 +28,11 @@ const SignUpForm = () => {
   return (
     <div>
       <h2>Sign Up</h2>
-      <Formik initialValues={initialValues}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <Form>
           <label>Email</label>
           <div>
@@ -62,5 +74,3 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-
-// підключити схему валідації до форміка
